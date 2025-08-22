@@ -111,3 +111,57 @@ exemplo de comando (cli):
 ```bash
 az vm create --resource-group grupo-teste --name vm-teste --image UbuntuLTS --admin-username azureuser --generate-ssh-keys
 ```
+<br>
+
+### 9. administração do serviço de app services
+
+- criação e configuração de aplicações em **paas** (platform as a service)  
+- escolha de planos: **basic, standard, premium, isolated** conforme necessidade de escala e performance  
+- relação: **app service plan** → agrupa os recursos de compute, onde os **app services** são executados  
+- escalabilidade:  
+  - **scale up**: upgrade de sku (mudança de plano)  
+  - **scale out**: aumento de instâncias para atender maior demanda  
+- integração com **azure container instances (aci)** e **azure kubernetes services (aks)** para orquestração de containers  
+- uso de **deployment slots** (staging, production, etc.) com **swap** sem causar indisponibilidade  
+- configuração de rotinas de **backup** dos apps  
+- hospedagem de web apps com domínio padrão **azurewebsites.net**  
+- suporte a **continuous deployment** via github, bitbucket, azure repos, git local e docker hub  
+
+exemplo de comando (cli):
+```bash
+az webapp create --resource-group grupo-teste --plan appserviceplan-teste --name meuapp --runtime "DOTNET|6.0"
+```
+<br>
+
+### 10. configuração de proteção de dados
+
+- configuração de backup de arquivos e pastas no azure
+- configuração de backup de máquinas virtuais
+- uso do backup center para business continuity e validação do status de backup
+- utilização de recovery services vault para workloads locais e em nuvem
+- uso do mars agent (microsoft azure recovery services) para backup em ambientes on-premises
+- suporte a replicação e restauração granular
+
+exemplo de comando (cli):
+
+```bash
+az backup protection enable-for-vm --resource-group grupo-teste --vault-name vault-teste --vm vm-teste
+```
+<br>
+
+### 11. administração de monitoramento
+
+- utilização do azure monitor para métricas e logs em tempo real
+- configuração de alertas baseados em métricas (cpu, memória, disponibilidade) e em logs (atividade, auditoria)
+- criação de grupos de ação para enviar notificações via e-mail, sms, webhook, logic apps, automation runbooks etc.
+- integração com application insights para monitorar aplicações em tempo real (requisições, falhas, dependências)
+- uso de log analytics workspace para centralizar consultas e relatórios personalizados
+- visualizações e dashboards no azure portal e integração com power bi
+- diagnóstico de redes com network watcher (topologia, latência, conexões)
+- acompanhamento de conformidade e segurança com microsoft defender for cloud
+
+exemplo de comando (cli):
+
+```bash
+az monitor metrics list --resource vm-teste --metric "Percentage CPU"
+```
